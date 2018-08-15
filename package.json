@@ -1,6 +1,6 @@
 {
     "name": "@irsooti/localstorage-manager",
-    "version": "1.0.2",
+    "version": "1.0.22",
     "description": "A simple wrapper to handle localStorage without worrying about json conversion",
     "main": "dist/localstorage-manager.js",
     "author": "Daniele Irsuti",
