@@ -12,6 +12,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var localStorageManager = (0, _core2.default)();
 
-localStorageManager.isDebugging = false;
-
 exports.default = localStorageManager;
