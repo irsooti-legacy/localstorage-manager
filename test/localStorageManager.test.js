@@ -1,4 +1,6 @@
 import localStorageManager from '../dist/localstorage-manager';
+// const localStorageManager = require('../dist/localstorage-manager');
+// localStorageManager.default.tryParseLocalStorage
 
 const lastUpdate = Date.now();
 

@@ -1,6 +1,6 @@
 import customEvents from './customEvents';
 
-const core = () => {
+const core = (() => {
     let tryParseLocalStorage = () => {
         let localStorageContainer = {};
         Object.keys(localStorage).map(
@@ -58,31 +58,12 @@ const core = () => {
     };
 
     return {
-        /**
-         *    It try to parse the whole localStorage
-         */
         tryParseLocalStorage,
-        /**
-         *    It try to access to corresponding property like
-         *    localStorage.getItem
-         */
         tryGetValue,
-
-        /**
-         *    It sets a new json compliant object
-         */
         setValue,
-
-        /**
-         *    It removes the matching property value
-         */
         removeValue,
-
-        /**
-         *    It resets localStorage
-         */
         reset
     };
-};
+})();
 
 export default core;
