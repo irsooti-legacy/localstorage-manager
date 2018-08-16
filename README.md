@@ -1,4 +1,4 @@
-# Localstorage manager  [![CircleCI](https://circleci.com/gh/irsooti/localstorage-manager/tree/master.svg?style=svg)](https://circleci.com/gh/irsooti/localstorage-manager/tree/master)
+# Localstorage manager  [![CircleCI](https://circleci.com/gh/irsooti/localstorage-manager/tree/master.svg?style=svg)](https://circleci.com/gh/irsooti/localstorage-manager/tree/master) [![npm version](https://badge.fury.io/js/%40irsooti%2Flocalstorage-manager.svg)](https://badge.fury.io/js/%40irsooti%2Flocalstorage-manager)
 
 The library is pretty simple, because is pretty similar to legacy localstorage api.
 
