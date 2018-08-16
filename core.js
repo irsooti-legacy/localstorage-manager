@@ -10,7 +10,7 @@ var _customEvents2 = _interopRequireDefault(_customEvents);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var core = function core() {
+var core = function () {
     var tryParseLocalStorage = function tryParseLocalStorage() {
         var localStorageContainer = {};
         Object.keys(localStorage).map(function (key) {
@@ -71,31 +71,12 @@ var core = function core() {
     };
 
     return {
-        /**
-         *    It try to parse the whole localStorage
-         */
         tryParseLocalStorage: tryParseLocalStorage,
-        /**
-         *    It try to access to corresponding property like
-         *    localStorage.getItem
-         */
         tryGetValue: tryGetValue,
-
-        /**
-         *    It sets a new json compliant object
-         */
         setValue: setValue,
-
-        /**
-         *    It removes the matching property value
-         */
         removeValue: removeValue,
-
-        /**
-         *    It resets localStorage
-         */
         reset: reset
     };
-};
+}();
 
 exports.default = core;
