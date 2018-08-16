@@ -1,4 +1,4 @@
-# Localstorage manager
+# Localstorage manager  [![CircleCI](https://circleci.com/gh/irsooti/localstorage-manager/tree/master.svg?style=svg)](https://circleci.com/gh/irsooti/localstorage-manager/tree/master)
 
 The library is pretty simple, because is pretty similar to legacy localstorage api.
 
@@ -8,4 +8,10 @@ The library is pretty simple, because is pretty similar to legacy localstorage a
 
 - `removeValue(property)`: It works like localStorage.removeItem
 - `reset()`: It works like localStorage.clear
-- `setDebuggingStatus(bool)`: Each time you update the localStorage, a table with updated data appears in console log
+- `tryParseLocalStorage()`: It try to parse the whole localStorage
+
+## Events handler
+
+- `localstoragemanager:change`: The event is fired when a change occurs by localStorageManager, it returns an empty detail for now;
+- `localstoragemanager:remove`: The event is fired when a property is removed by localStorageManager and it returns a detail wich contains the key removed
+- `localstoragemanager:set`: The event is fired when a property is setted by localStorageManager and it returns a detail wich contains the key and the value added

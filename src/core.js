@@ -1,14 +1,28 @@
-const core = () => {
-    let isDebugging = false;
-    const parseError = `Item found can\'t be converted. Maybe it was stored using legacy localStorage. 
-    Anyway, as fallback, I returned the result of localStorage.getItem`;
+import customEvents from './customEvents';
 
-    let setDebuggingStatus = bool => (isDebugging = bool === true);
-    let showDebuggingTable = () => {
-        if (isDebugging) {
-            console.table(localStorage);
-        }
+const core = () => {
+    let tryParseLocalStorage = () => {
+        let localStorageContainer = {};
+        Object.keys(localStorage).map(
+            key => (localStorageContainer[key] = tryGetValue(key))
+        );
+        return localStorageContainer;
     };
+
+    let onStorageChange = customEvents.storageChange({});
+
+    let onStoragePropertyRemove = prop =>
+        customEvents.storagePropertyRemove({
+            removedProperty: prop
+        });
+
+    let onStoragePropertySet = prop =>
+        customEvents.storagePropertySet({
+            addedProperty: prop
+        });
+
+    const parseError = key => `The localStorage property "${key}" can\'t be converted. Maybe it was stored using legacy localStorage. 
+    As fallback, the returned value is the result of localStorage.getItem("${key}")`;
 
     let tryGetValue = item => {
         var itemFound = localStorage.getItem(item);
@@ -19,33 +33,35 @@ const core = () => {
         try {
             tryParseResult = JSON.parse(itemFound);
         } catch (e) {
-            console.warn(parseError);
+            console.warn(`[[ Key: ${item} ]]`, parseError(item));
             tryParseResult = itemFound;
         }
         return tryParseResult;
     };
 
-    let setValue = function(key, item) {
-        localStorage.setItem(key, JSON.stringify(item));
-        showDebuggingTable();
+    let setValue = function(key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+        window.dispatchEvent(onStoragePropertySet({ key, value }));
+        window.dispatchEvent(onStorageChange);
     };
 
     let removeValue = key => {
+        let found = tryGetValue(key);
         localStorage.removeItem(key);
-        showDebuggingTable();
+        window.dispatchEvent(onStoragePropertyRemove(key));
+        window.dispatchEvent(onStorageChange);
     };
 
     let reset = () => {
         localStorage.clear();
-        showDebuggingTable();
+        window.dispatchEvent(onStorageChange);
     };
 
     return {
         /**
-         *    console.table() your current localStorage
-         *    Set true or false to enable/disable
+         *    It try to parse the whole localStorage
          */
-        setDebuggingStatus,
+        tryParseLocalStorage,
         /**
          *    It try to access to corresponding property like
          *    localStorage.getItem
